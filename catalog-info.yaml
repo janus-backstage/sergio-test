@@ -1,0 +1,42 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "sergio-test"
+  description: "A cool quarkus app"
+  annotations:
+    argocd/app-name: sergio-test-dev
+    backstage.io/kubernetes-id: sergio-test
+    backstage.io/kubernetes-namespace: sergio-test-dev
+    janus-idp.io/tekton: sergio-test
+    backstage.io/source-location: url:https://github.com/janus-backstage/sergio-test
+    backstage.io/techdocs-ref: url:https://github.com/janus-backstage/sergio-test
+    gitlab.com/project-slug: janus-backstage/sergio-test
+    quay.io/repository-slug: "janus-backstage/sergio-test"
+  tags:
+    - java
+    - quarkus
+  links:
+    - url: https://devspaces.apps.ocp4.quitala.eu/#https://github.com/janus-backstage/sergio-test
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: https://devspaces.apps.ocp4.quitala.eu/#https://github.com/janus-backstage/sergio-test?che-editor=che-incubator/che-idea/latest
+      title: OpenShift Dev Spaces (JetBrains IntelliJ)
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user1"
+  providesApis:
+    - "sergio-test"
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: "sergio-test"
+  description: "A cool quarkus app"
+spec:
+  type: openapi
+  lifecycle: production
+  owner: "user1"
+  definition:
+    $text: ./openapi.yaml
